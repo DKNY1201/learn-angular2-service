@@ -10,7 +10,11 @@ import { AccountsService } from 'app/accounts.service';
 })
 export class NewAccountComponent implements OnInit {
 
-  constructor(private accountsService: AccountsService) { }
+  constructor(private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe(
+      (newStatus) => alert(newStatus)
+    );
+  }
 
   ngOnInit() {
   }
@@ -18,5 +22,7 @@ export class NewAccountComponent implements OnInit {
   onCreateAccount(accountName: string, accountStatus: string) {
     this.accountsService.onAccountAdded(accountName, accountStatus);
   }
+
+  
 
 }
